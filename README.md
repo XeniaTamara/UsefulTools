@@ -6,4 +6,6 @@
 2. Create an output file name.
 3. Run the script with the following command:
    
-   python RGB_to_gray.py --i path/to/your/image.tif --o path/to/output/grayscale_image.tif
+   ``` bash
+python RGB_to_gray.py --i path/to/your/image.tif --o path/to/output/grayscale_image.tif
+```

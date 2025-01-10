@@ -10,7 +10,7 @@ import argparse
 import glob
 
 
-def getOptions():
+def get_options():
     """
     Function to pull in arguments for input and output paths.
     """
@@ -57,7 +57,7 @@ def main():
     """
     Function to call all other functions.
     """
-    options = getOptions()
+    options = get_options()
     process_images(options.input, options.output)
 
 if __name__ == '__main__':
