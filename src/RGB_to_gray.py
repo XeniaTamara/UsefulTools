@@ -44,11 +44,13 @@ def process_images(input_file, output_file):
     # Convert to grayscale
     image_gray = rgb2gray(image_rgb)
     print(f"RGB2grayscale conversion completed.")
+
+    # Convert to 8-bit
     image_gray_uint8 = img_as_ubyte(image_gray)
+    print(f"Bit depth back conversion.")
         
     # Save the grayscale image
     io.imsave(output_file, image_gray_uint8)
-    print(f"Bit depth back conversion.")
     print(f"Grayscale image saved: {output_file}, data type: {image_gray_uint8.dtype}")
 
 def main():
