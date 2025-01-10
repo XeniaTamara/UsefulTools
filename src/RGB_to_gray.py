@@ -5,7 +5,7 @@ from tiffile import imread
 from skimage import io
 from skimage.io import imsave
 from skimage.color import rgb2gray
-#from pathlib import Path
+from skimage import img_as_ubyte
 import argparse
 import glob
 
@@ -39,16 +39,17 @@ def process_images(input_file, output_file):
     """
     # Read image
     image_rgb = io.imread(input_file)
-    print(f"RGB image read: {input_file}")
+    print(f"RGB image read: {input_file}, data type: {image_rgb.dtype}")
         
     # Convert to grayscale
     image_gray = rgb2gray(image_rgb)
     print(f"RGB2grayscale conversion completed.")
+    image_gray_uint8 = img_as_ubyte(image_gray)
         
     # Save the grayscale image
-    io.imsave(output_file, image_gray)
-    print(f"Grayscale image saved: {output_file}")
-
+    io.imsave(output_file, image_gray_uint8)
+    print(f"Bit depth back conversion.")
+    print(f"Grayscale image saved: {output_file}, data type: {image_gray_uint8.dtype}")
 
 def main():
     """
