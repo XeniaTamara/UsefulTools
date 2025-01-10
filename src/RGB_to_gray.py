@@ -1,7 +1,6 @@
 
 # Libraries
 import os 
-import matplotlib.pyplot as plt
 from tiffile import imread
 from skimage import io
 from skimage.io import imsave
