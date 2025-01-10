@@ -33,26 +33,21 @@ def getOptions():
 
     return args
 
-def process_images(input_dir, output_dir):
+def process_images(input_file, output_file):
     """
     Convert RGB images to grayscale and save them.
     """
-    image_paths = glob.glob(os.path.join(input_dir, "*.tif")) # using only data in the tif format
-    
-    for image_path in image_paths:
-        # Read the RGB image
-        image_rgb = io.imread(image_path)
+    # Read image
+    image_rgb = io.imread(input_file)
+    print(f"RGB image read: {input_file}")
         
-        # Convert to grayscale
-        image_gray = rgb2gray(image_rgb)
+    # Convert to grayscale
+    image_gray = rgb2gray(image_rgb)
+    print(f"RGB2grayscale conversion completed.")
         
-        # Extract the image name and create output path
-        image_name = os.path.basename(image_path).split('.')[0]
-        output_path = os.path.join(output_dir, f"{image_name}_gray.tif")
-        
-        # Save the grayscale image
-        io.imsave(output_path, image_gray)
-        print(f"Saved grayscale image: {output_path}")
+    # Save the grayscale image
+    io.imsave(output_file, image_gray)
+    print(f"Grayscale image saved: {output_file}")
 
 
 def main():
