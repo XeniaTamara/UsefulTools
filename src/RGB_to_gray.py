@@ -5,7 +5,7 @@ from tiffile import imread
 from skimage import io
 from skimage.io import imsave
 from skimage.color import rgb2gray
-from skimage import img_as_ubyte
+from skimage import img_as_ubyte, img_as_float32, img_as_uint
 import argparse
 import glob
 
@@ -39,19 +39,30 @@ def process_images(input_file, output_file):
     """
     # Read image
     image_rgb = io.imread(input_file)
-    print(f"RGB image read: {input_file}, data type: {image_rgb.dtype}")
-        
+    print(f"Input image read: {input_file}")
+
     # Convert to grayscale
     image_gray = rgb2gray(image_rgb)
     print(f"RGB2grayscale conversion completed.")
 
-    # Convert to 8-bit
-    image_gray_uint8 = img_as_ubyte(image_gray)
-    print(f"Bit depth back conversion.")
+    # Convert to original data type
+    original_dtype = image_rgb.dtype
+    if original_dtype in ['uint8', 'uint16', 'float32']:
+        if original_dtype == 'uint8':
+            image_gray = img_as_ubyte(image_gray)
+        elif original_dtype == 'uint16':
+            image_gray = img_as_uint(image_gray)
+        else:
+            image_gray = img_as_float32(image_gray)
+        print(f"Successfully converted back to original data format: {original_dtype}")
+    elif original_dtype == 'float64':
+        print(f"Original data format preserved: {original_dtype}")
+    else:
+        print(f"Unsupported data type: {original_dtype}. Grayscale image saved in default data format: {image_gray.dtype}")
         
     # Save the grayscale image
-    io.imsave(output_file, image_gray_uint8)
-    print(f"Grayscale image saved: {output_file}, data type: {image_gray_uint8.dtype}")
+    io.imsave(output_file, image_gray)
+    print(f"Grayscale image saved: {output_file}")
 
 def main():
     """
