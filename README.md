@@ -7,5 +7,5 @@
 3. Run the script with the following command:
    
 ``` bash
-python RGB_to_gray.py --i path/to/your/image.tif --o path/to/output/grayscale_image.tif
+python rgb_to_gray.py --i path/to/your/image.tif --o path/to/output/grayscale_image.tif
 ```
