@@ -1,0 +1,12 @@
+imageio==2.36.1
+lazy_loader==0.4
+networkx==3.4.2
+numpy==2.2.1
+packaging==24.2
+pillow==11.1.0
+scikit-image==0.25.0
+scipy==1.15.1
+setuptools==75.1.0
+tifffile==2024.12.12
+tiffile==2018.10.18
+wheel==0.44.0
