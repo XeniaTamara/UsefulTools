@@ -1,9 +1,8 @@
 
 # Libraries
 import os 
-from tiffile import imread
+from tiffile import imread, imsave
 from skimage import io
-from skimage.io import imsave
 from skimage.color import rgb2gray
 from skimage import img_as_ubyte, img_as_float32, img_as_uint
 import argparse
@@ -61,7 +60,7 @@ def process_images(input_file, output_file):
         print(f"Unsupported data type: {original_dtype}. Grayscale image saved in default data format: {image_gray.dtype}")
         
     # Save the grayscale image
-    io.imsave(output_file, image_gray)
+    imsave(output_file, image_gray)
     print(f"Grayscale image saved: {output_file}")
 
 def main():
